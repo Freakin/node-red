@@ -239,7 +239,7 @@ RED.search = (function() {
 
     function show() {
         if (!visible) {
-            RED.keyboard.add("*",/* ESCAPE */ 27,function(){hide();d3.event.preventDefault();});
+            RED.keyboard.add("*",/* ESCAPE */ 27,function() {hide();d3.event.preventDefault();});
             $("#header-shade").show();
             $("#editor-shade").show();
             $("#palette-shade").show();
@@ -274,7 +274,7 @@ RED.search = (function() {
     }
 
     function init() {
-        RED.keyboard.add("*",/* . */ 190,{ctrl:true},function(){if (!disabled) { show(); } d3.event.preventDefault();});
+        RED.keyboard.add("*",/* , */ 188,{ctrl:true},function() {if (!disabled) { show(); } d3.event.preventDefault();});
         RED.events.on("editor:open",function() { disabled = true; });
         RED.events.on("editor:close",function() { disabled = false; });
         RED.events.on("palette-editor:open",function() { disabled = true; });
