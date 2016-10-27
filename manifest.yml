@@ -1,0 +1,4 @@
+---
+applications:
+- name: node-red
+  memory: 1024M
