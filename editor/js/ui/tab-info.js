@@ -30,7 +30,7 @@ RED.sidebar.info = (function() {
     content.style.paddingTop = "4px";
     content.style.paddingLeft = "4px";
     content.style.paddingRight = "4px";
-    content.className = "sidebar-node-info"
+    content.className = "sidebar-node-info";
 
     var propertiesExpanded = false;
 
@@ -42,7 +42,6 @@ RED.sidebar.info = (function() {
             content: content,
             enableOnEdit: true
         });
-
     }
 
     function show() {
@@ -98,7 +97,8 @@ RED.sidebar.info = (function() {
         }
 
         if (!m && node.type != "subflow" && node.type != "comment") {
-            table += '<tr class="blank"><td colspan="2"><a href="#" class="node-info-property-header"><i style="width: 10px; text-align: center;" class="fa fa-caret-'+(propertiesExpanded?"down":"right")+'"></i> '+RED._("sidebar.info.properties")+'</a></td></tr>';
+            table += '<tr class="blank"><td colspan="2"><a href="#" class="node-info-property-header">';
+            table += '<i style="width:10px; text-align:center;" class="fa fa-caret-'+(propertiesExpanded?"down":"right")+'"></i> '+RED._("sidebar.info.properties")+'</a></td></tr>';
             if (node._def) {
                 for (var n in node._def.defaults) {
                     if (n != "name" && node._def.defaults.hasOwnProperty(n)) {
@@ -131,7 +131,6 @@ RED.sidebar.info = (function() {
                             val = JSON.stringify(val,jsonFilter," ");
                             val = val.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
                         }
-
                         table += '<tr class="node-info-property-row'+(propertiesExpanded?"":" hide")+'"><td>'+n+"</td><td>"+val+"</td></tr>";
                     }
                 }
@@ -140,7 +139,7 @@ RED.sidebar.info = (function() {
         table += "</tbody></table><hr/>";
         if (!subflowNode && node.type != "comment") {
             var helpText = $("script[data-help-name$='"+node.type+"']").html()||"";
-            table  += '<div class="node-help"><span class="bidiAware" dir=\"'+RED.text.bidi.resolveBaseTextDir(helpText)+'">'+helpText+'</span></div>';
+            table += '<div class="node-help"><span class="bidiAware" dir=\"'+RED.text.bidi.resolveBaseTextDir(helpText)+'">'+helpText+'</span></div>';
         }
         if (subflowNode) {
             table += '<div class="node-help"><span class="bidiAware" dir=\"'+RED.text.bidi.resolveBaseTextDir(subflowNode.info||"")+'">'+marked(subflowNode.info||"")+'</span></div>';
@@ -172,7 +171,9 @@ RED.sidebar.info = (function() {
     }
 
     function clear() {
-        $(content).html("");
+        //$(content).html("");
+        var r = parseInt(Math.random() * 11);
+        $(content).html('<div class="node-info-tip">'+RED._("common.info.tip"+r)+'</div>');
     }
 
     function set(html) {
@@ -202,7 +203,7 @@ RED.sidebar.info = (function() {
     return {
         init: init,
         show: show,
-        refresh:refresh,
+        refresh: refresh,
         clear: clear,
         set: set
     }
